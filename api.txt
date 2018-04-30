@@ -1,0 +1,142 @@
+pssys-49@pssys49:~/Desktop/blockchain-python$ curl "http://127.0.0.1:5001/chain"{
+  "chain": [
+    {
+      "algo_params": 0, 
+      "index": 0, 
+      "previous_hash": 0, 
+      "timestamp": 1525070292.549626, 
+      "transactions": []
+    }
+  ]
+}
+
+
+2.
+
+pssys-49@pssys49:~/Desktop/blockchain-python$ curl -X POST -H "Content-Type: application/json" -d '{"sender": "addr1", "recipient": "addr2", "amount": 3}' "http://127.0.0.1:5000/create-transaction"
+{
+  "block_index": true, 
+  "message": "Transaction has been submitted successfully"
+}
+
+
+3.
+
+pssys-49@pssys49:~/Desktop/blockchain-python$ curl "http://127.0.0.1:5000/validate_Block"
+{
+  "block_data": {
+    "algo_params": 7, 
+    "index": 1, 
+    "previous_hash": "451a819b7373d92362f81c2de11100d69cfdad9ac07068446eb7df71501b0087", 
+    "timestamp": 1525070419.7228367, 
+    "transactions": [
+      {
+        "amount": 3, 
+        "recipient": "addr2", 
+        "sender": "addr1"
+      }, 
+      {
+        "amount": 1, 
+        "recipient": "428c5806aa7e4bfcba515e5140ed5ab4", 
+        "sender": "0"
+      }
+    ]
+  }, 
+  "message": "Successfully validated and add  the new Block in chain"
+}
+
+4.
+
+pssys-49@pssys49:~/Desktop/blockchain-python$ curl "http://127.0.0.1:5000/chain"{
+  "chain": [
+    {
+      "algo_params": 0, 
+      "index": 0, 
+      "previous_hash": 0, 
+      "timestamp": 1525070264.7981575, 
+      "transactions": []
+    }, 
+    {
+      "algo_params": 7, 
+      "index": 1, 
+      "previous_hash": "451a819b7373d92362f81c2de11100d69cfdad9ac07068446eb7df71501b0087", 
+      "timestamp": 1525070419.7228367, 
+      "transactions": [
+        {
+          "amount": 3, 
+          "recipient": "addr2", 
+          "sender": "addr1"
+        }, 
+        {
+          "amount": 1, 
+          "recipient": "428c5806aa7e4bfcba515e5140ed5ab4", 
+          "sender": "0"
+        }
+      ]
+    }
+  ]
+}
+
+5.
+
+pssys-49@pssys49:~/Desktop/blockchain-python$ curl -X POST -H "Content-Type: application/json" -d '{"address": "http://127.0.0.1:5001"}' "http://127.0.0.1:5000/register-node"
+{
+  "message": "New node has been added", 
+  "node_count": 1, 
+  "nodes": [
+    "http://127.0.0.1:5001"
+  ]
+}
+
+
+
+6.
+
+pssys-49@pssys49:~/Desktop/blockchain-python$ curl "http://127.0.0.1:5000/sync-chain"
+{
+  "chain": [
+    {
+      "algo_params": 0, 
+      "index": 0, 
+      "previous_hash": 0, 
+      "timestamp": 1525070264.7981575, 
+      "transactions": []
+    }, 
+    {
+      "algo_params": 7, 
+      "index": 1, 
+      "previous_hash": "451a819b7373d92362f81c2de11100d69cfdad9ac07068446eb7df71501b0087", 
+      "timestamp": 1525070419.7228367, 
+      "transactions": [
+        {
+          "amount": 3, 
+          "recipient": "addr2", 
+          "sender": "addr1"
+        }, 
+        {
+          "amount": 1, 
+          "recipient": "428c5806aa7e4bfcba515e5140ed5ab4", 
+          "sender": "0"
+        }
+      ]
+    }, 
+    {
+      "algo_params": 14, 
+      "index": 2, 
+      "previous_hash": "ea8b0e386dbff3f553253dd12bacc6df39fa45f92125a6c611da42c2ab51d3f3", 
+      "timestamp": 1525070818.7597353, 
+      "transactions": [
+        {
+          "amount": 1, 
+          "recipient": "428c5806aa7e4bfcba515e5140ed5ab4", 
+          "sender": "0"
+        }
+      ]
+    }
+  ], 
+  "message": "Chain is already up to date"
+}
+
+
+
+
