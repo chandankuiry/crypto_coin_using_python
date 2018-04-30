@@ -1,4 +1,4 @@
-#BlockChain implemented in Python
+# BlockChain implemented in Python
 
 See the [bitcoin white paper](https://bitcoin.org/bitcoin.pdf) and [Bitcoin organization wiki website](https://en.bitcoin.it/wiki/Main_Page) for more information
 
